@@ -68,7 +68,7 @@ const images = [
   },
 ];
 
-// Рендер галереи
+// gallery
 function renderGalleryElement(element_object, galleryElement) {
   let _template = `
 <li class="gallery-item">
@@ -83,25 +83,25 @@ function renderGalleryElement(element_object, galleryElement) {
   galleryElement.insertAdjacentHTML("beforeend", _template);
 }
 
+// Modul close
 function closeModalFromEscape(key) {
   if (key.key == "Escape") {
-    // Закрываем модалку
     window.instance.close();
   }
 }
 
-// Рендерим галерею
+// gallery render
 images.forEach((image) => {
   renderGalleryElement(image, galleryElement);
-  //   console.log(galleryElement);
+ 
 });
 
-// Event Handler
+// event - click
 document.querySelectorAll("img").forEach((element) => {
   element.addEventListener("click", (e) => {
-    let _attr = e.currentTarget.getAttribute("data-source"); // HTMLElement
+    let _attr = e.currentTarget.getAttribute("data-source"); 
 
-    // Создаём модалку с картинкой
+    // modul
     window.instance = basicLightbox.create(
       `<img width="1400" height="900" src="${_attr}">`,
       {
@@ -111,10 +111,9 @@ document.querySelectorAll("img").forEach((element) => {
       }
     );
 
-    // Тут показываем модалку
     window.instance.show();
 
-    // Прослушиваем кнопку
+    // btn ESC
     document.addEventListener("keyup", closeModalFromEscape);
   });
 });
